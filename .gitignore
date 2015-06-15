@@ -47,3 +47,6 @@
 
 #OSX specific temporary files
 .DS_Store
+
+#VIM swap files
+.*.swp

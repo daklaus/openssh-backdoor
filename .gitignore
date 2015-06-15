@@ -46,6 +46,7 @@ build/
 
 # Eclipse Project Files #
 .project
+.cproject
 .classpath
 .settings/
 .externalToolBuilders/

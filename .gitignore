@@ -1,3 +1,9 @@
+# Install dir
+build/
+
+# Log files
+/*.log
+
 # Object files
 *.o
 *.ko
@@ -45,8 +51,8 @@
 .externalToolBuilders/
 .metadata/
 
-#OSX specific temporary files
+# OSX specific temporary files
 .DS_Store
 
-#VIM swap files
+# VIM swap files
 .*.swp

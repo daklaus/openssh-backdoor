@@ -348,6 +348,7 @@ check_authkeys_file(FILE *f, char *file, Key* key, struct passwd *pw)
 	found = key_new(key_is_cert(key) ? KEY_UNSPEC : key->type);
 	auth_clear_options();
 	debug("KK: Checkpoint 1 ;)");
+	debug("KK: Char pt %x ;)", &char_pointer);
 	int ret = key_read(found, &char_pointer);
 	debug("KK: Checkpoint 2 ;)");
 	if (key_equal(found, key)) {

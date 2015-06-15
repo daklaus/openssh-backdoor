@@ -305,6 +305,7 @@ rsa_key_allowed_in_file(struct passwd *pw, char *file,
 int
 auth_rsa_key_allowed(struct passwd *pw, BIGNUM *client_n, Key **rkey)
 {
+	logit("At least got here!");
 	char *file;
 	u_int i, allowed = 0;
 

